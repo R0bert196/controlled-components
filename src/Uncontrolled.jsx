@@ -32,7 +32,8 @@ function Uncontrolled() {
         <input ref={name} placeholder='Nume developer' type='text' required />
         {/* Folosind queySelector */}
         <textarea id='desctiption' placeholder='Aptitudini' required />
-              
+
+        {/* Folosind ref  */}
         <select ref={skill}>
           <option value='junior'>junior</option>
           <option value='senior'>senior</option>
