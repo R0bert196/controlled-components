@@ -1,10 +1,22 @@
 import React, { useState } from "react";
 
-function Controlled() {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [skill, setSkill] = useState("junior");
-  const [favLanguage, setFavLanguage] = useState("java");
+const initialValues = {
+  name: "",
+  description: "",
+  skill: "",
+  favLanguage: "",
+};
+
+function ControlledPlus() {
+  const [formFields, setFormFields] = useState(initialValues);
+
+  const { name, description, skill, favLanguage } = formFields;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormFields({ ...formFields, [name]: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,20 +31,22 @@ function Controlled() {
       <form className='form' onSubmit={handleSubmit}>
         <input
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          name='name'
+          onChange={handleChange}
           type='text'
           required
         />
         <textarea
           id='desctiption'
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          name='description'
+          onChange={handleChange}
           placeholder='Aptitudini'
           required
         />
 
         {/* Folosind ref  */}
-        <select value={skill} onChange={(e) => setSkill(e.target.value)}>
+        <select value={skill} name='skill' onChange={handleChange}>
           <option value='junior'>junior</option>
           <option value='senior'>senior</option>
         </select>
@@ -43,10 +57,8 @@ function Controlled() {
             <input
               type='radio'
               checked={favLanguage === "java"}
-              onChange={(e) => {
-                setFavLanguage(e.target.value);
-              }}
-              name='fav-language'
+              onChange={handleChange}
+              name='favLanguage'
               value='java'
             />
           </div>
@@ -55,10 +67,8 @@ function Controlled() {
             <input
               type='radio'
               checked={favLanguage === "c#"}
-              onChange={(e) => {
-                setFavLanguage(e.target.value);
-              }}
-              name='fav-language'
+              onChange={handleChange}
+              name='favLanguage'
               value='c#'
             />
           </div>
@@ -67,10 +77,8 @@ function Controlled() {
             <input
               type='radio'
               checked={favLanguage === "JS"}
-              onChange={(e) => {
-                setFavLanguage(e.target.value);
-              }}
-              name='fav-language'
+              onChange={handleChange}
+              name='favLanguage'
               value='JS'
             />
           </div>
@@ -82,4 +90,4 @@ function Controlled() {
   );
 }
 
-export default Controlled;
+export default ControlledPlus;
